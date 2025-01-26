@@ -13,19 +13,19 @@ const characters: Character[] = [
     id: 1,
     name: "Warrior",
     description: "Strong and brave fighter.",
-    image: "/images/warrior.png",
+    image: "/warrior.webp",
   },
   {
     id: 2,
     name: "Mage",
     description: "Master of magical spells.",
-    image: "/images/mage.png",
+    image: "/mage.webp",
   },
   {
     id: 3,
     name: "Archer",
     description: "Precise and quick with the bow.",
-    image: "/images/archer.png",
+    image: "/archer.webp",
   },
 ]
 
