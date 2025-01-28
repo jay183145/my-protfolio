@@ -1,5 +1,5 @@
 import React from "react"
-import Card from "@/components/ui/card"
+import CharacterCard from "@/components/character-select/charater-card"
 
 export type Character = {
   id: number
@@ -37,7 +37,7 @@ function CharacterSelect() {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {characters.map(character => (
-          <Card key={character.id} character={character} />
+          <CharacterCard key={character.id} character={character} />
         ))}
       </div>
     </div>
