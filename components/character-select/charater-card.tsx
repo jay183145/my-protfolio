@@ -1,15 +1,26 @@
-import React from "react"
+"use client"
+
+import React, { useState } from "react"
 import cn from "@/lib/cn"
 import Button from "@/components/ui/button"
 import { Character } from "@/components/character-select"
 import Image from "next/image"
+import CharacterAttribute from "../ui/modal/charater-attribute"
+
 interface CardProps {
   className?: string
   character: Character
 }
 
 export default function Card({ className, character }: CardProps) {
+  const [isShowCharacterAttributeModal, setIsShowCharacterAttributeModal] =
+    useState(false)
+  const handleBtnClick = (name: string) => {
+    setIsShowCharacterAttributeModal(true)
+  }
+
   return (
+    <>
     <div
       className={cn(
         "flex flex-col justify-between bg-white border-2 p-3 border-white shadow-lg rounded-lg",
@@ -34,11 +45,19 @@ export default function Card({ className, character }: CardProps) {
         </div>
       </div>
 
-      <div className="">
-        <Button variant="primary" className="w-full">
-          Choose {character.name}
-        </Button>
+      <Button
+        variant="primary"
+        className="w-full"
+        onClick={() => handleBtnClick(character.name)}
+      >
+        Choose {character.name}
+      </Button>
       </div>
-    </div>
+      <CharacterAttribute
+        isShowCharacterAttributeModal={isShowCharacterAttributeModal}
+        setIsShowCharacterAttributeModal={setIsShowCharacterAttributeModal}
+        character={character}
+      />
+    </>
   )
 }
