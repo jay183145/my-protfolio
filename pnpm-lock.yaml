@@ -17,42 +17,48 @@ importers:
       next:
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
       react:
-        specifier: ^18
+        specifier: ^18.2.0
         version: 18.2.0
       react-dom:
-        specifier: ^18
+        specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
+      zustand:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/react@18.2.58)(react@18.2.0)
     devDependencies:
       '@types/node':
-        specifier: ^20
+        specifier: ^20.11.20
         version: 20.11.20
       '@types/react':
-        specifier: ^18
+        specifier: ^18.2.58
         version: 18.2.58
       '@types/react-dom':
-        specifier: ^18
+        specifier: ^18.2.19
         version: 18.2.19
       autoprefixer:
-        specifier: ^10.0.1
+        specifier: ^10.4.17
         version: 10.4.17(postcss@8.4.35)
       eslint:
-        specifier: ^8
+        specifier: ^8.57.0
         version: 8.57.0
       eslint-config-next:
         specifier: 14.1.0
         version: 14.1.0(eslint@8.57.0)(typescript@5.3.3)
       postcss:
-        specifier: ^8
+        specifier: ^8.4.35
         version: 8.4.35
       tailwindcss:
-        specifier: ^3.3.0
+        specifier: ^3.4.1
         version: 3.4.1
       typescript:
-        specifier: ^5
+        specifier: ^5.3.3
         version: 5.3.3
 
 packages:
@@ -396,8 +402,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  caniuse-lite@1.0.30001589:
-    resolution: {integrity: sha512-vNQWS6kI+q6sBlHbh71IIeC+sRwK2N3EDySc/updIGhIee2x5z00J4c1242/5/d6EpEMdOnk/m+6tuk4/tcsqg==}
+  caniuse-lite@1.0.30001695:
+    resolution: {integrity: sha512-vHyLade6wTgI2u1ec3WQBxv+2BrTERV28UXQu9LO6lZ9pYeMk34vjXFLOxo1A4UBA8XTL4njRQZdno/yYaSmWw==}
 
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -1224,6 +1230,11 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
+  prettier@3.4.2:
+    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
 
@@ -1539,6 +1550,24 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zustand@5.0.3:
+    resolution: {integrity: sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+
 snapshots:
 
   '@aashutoshrathi/word-wrap@1.2.6': {}
@@ -1837,7 +1866,7 @@ snapshots:
   autoprefixer@10.4.17(postcss@8.4.35):
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001589
+      caniuse-lite: 1.0.30001695
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1873,7 +1902,7 @@ snapshots:
 
   browserslist@4.23.0:
     dependencies:
-      caniuse-lite: 1.0.30001589
+      caniuse-lite: 1.0.30001695
       electron-to-chromium: 1.4.681
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
@@ -1894,7 +1923,7 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  caniuse-lite@1.0.30001589: {}
+  caniuse-lite@1.0.30001695: {}
 
   chalk@4.1.2:
     dependencies:
@@ -2678,7 +2707,7 @@ snapshots:
       '@next/env': 14.1.0
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001589
+      caniuse-lite: 1.0.30001695
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.2.0
@@ -2844,6 +2873,8 @@ snapshots:
       source-map-js: 1.0.2
 
   prelude-ls@1.2.1: {}
+
+  prettier@3.4.2: {}
 
   prop-types@15.8.1:
     dependencies:
@@ -3237,3 +3268,8 @@ snapshots:
   yaml@2.4.0: {}
 
   yocto-queue@0.1.0: {}
+
+  zustand@5.0.3(@types/react@18.2.58)(react@18.2.0):
+    optionalDependencies:
+      '@types/react': 18.2.58
+      react: 18.2.0
