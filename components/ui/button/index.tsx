@@ -15,7 +15,7 @@ export default function Button({
   const classNameVariant = useMemo(() => {
     switch (variant) {
       case "primary":
-        return "bg-neutral-300 text-black"
+        return "bg-neutral-300 text-black hover:bg-neutral-400"
       case "secondary":
         return "bg-neutral-600 text-neutral-100 hover:bg-neutral-700"
       case "outline":
