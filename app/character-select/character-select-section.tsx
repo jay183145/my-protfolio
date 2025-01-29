@@ -37,7 +37,7 @@ function CharacterSelect() {
 
             <div className="mt-5 grid w-full max-w-xs grid-cols-1 gap-6 overflow-auto px-3 pb-5 md:max-w-screen-lg md:grid-cols-3">
                 {characters.map((character) => (
-                    <CharacterCard key={character.id} character={character} />
+                    <CharacterCard key={character._id} character={character} />
                 ))}
             </div>
         </div>

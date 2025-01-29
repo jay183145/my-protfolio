@@ -1,7 +1,7 @@
 export interface Player {
     _id: string
-    type: "Warrior" | "Mage" | "Archer"
     name: string
+    type: string
     level: number
     experience: number
     hp: number
@@ -10,4 +10,6 @@ export interface Player {
     defense: number
     gold: number
     inventory: string[]
+    description: string
+    image: string
 }
