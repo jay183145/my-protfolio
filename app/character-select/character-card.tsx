@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import cn from "@/lib/cn"
 import Button from "@/components/ui/button"
-import { Character } from "@/app/character-select/character-select-section"
+import { Character } from "@/lib/api/characters/type"
 import Image from "next/image"
 import CharacterAttribute from "@/components/ui/modal/character-attribute"
 
@@ -23,7 +23,7 @@ export default function Card({ className, character }: CardProps) {
         <>
             <div
                 className={cn(
-                    "flex flex-col justify-between rounded-lg border-2 border-white bg-white p-3 shadow-lg",
+                    "flex w-full flex-col justify-between rounded-lg border-2 border-white bg-white p-3 shadow-lg",
                     className,
                 )}
             >
