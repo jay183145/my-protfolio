@@ -1,5 +1,5 @@
 import React from "react"
-import CharacterCard from "@/app/character-select/charater-card"
+import CharacterCard from "@/app/character-select/character-card"
 
 export type Character = {
     id: number

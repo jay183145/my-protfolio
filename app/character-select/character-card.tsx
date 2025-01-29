@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import cn from "@/lib/cn"
 import Button from "@/components/ui/button"
-import { Character } from "@/app/character-select/charater-select-section"
+import { Character } from "@/app/character-select/character-select-section"
 import Image from "next/image"
 import CharacterAttribute from "@/components/ui/modal/charater-attribute"
 
@@ -16,6 +16,7 @@ export default function Card({ className, character }: CardProps) {
     const [isShowCharacterAttributeModal, setIsShowCharacterAttributeModal] = useState(false)
     const handleBtnClick = (name: string) => {
         setIsShowCharacterAttributeModal(true)
+        console.log(name)
     }
 
     return (
