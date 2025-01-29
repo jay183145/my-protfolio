@@ -1,23 +1,14 @@
 import { API_URL } from "../constant/env"
+import { ApiFetchOptions } from "./type"
 
-/** 發送請求
- * @param {ApiFetchOptions} options 請求選項
- * @returns {Promise<ApiFetchResult<T>>} 請求結果，error有資料代表請求失敗
- */
-export default async function apiFetch<T>(options: ApiFetchOptions): Promise<ApiFetchResult<T>> {
-    if (!API_URL) throw new Error("API_URL is not set")
-
+export default async function apiFetch<T>(options: ApiFetchOptions): Promise<T> {
     const request = await requestInterceptor(options)
     const response = await fetch(API_URL + request.url, request.init)
 
     return response.json()
 }
 
-/** 預處理fetch請求資料
- * @param {ApiFetchOptions} options 請求選項
- * @returns {Promise<ApiRequest>} 請求資料
- */
-async function requestInterceptor(options: ApiFetchOptions): Promise<{ url: string; init: RequestInit }> {
+export async function requestInterceptor(options: ApiFetchOptions): Promise<{ url: string; init: RequestInit }> {
     const { url, params, data, ...init } = options
     const finalUrl = new URL(url, API_URL)
 
