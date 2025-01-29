@@ -1,5 +1,9 @@
+"use client"
+
 import React from "react"
 import CharacterCard from "@/app/character-select/character-card"
+import { IoChevronBack } from "react-icons/io5"
+import { useRouter } from "next/navigation"
 
 export type Character = {
     id: number
@@ -78,10 +82,21 @@ const characters: Character[] = [
 ]
 
 function CharacterSelect() {
+    const router = useRouter()
+    const handleBackClick = () => {
+        router.back()
+    }
     return (
-        <div className="flex h-full max-h-screen w-full flex-col items-center p-6">
-            <h1 className="mb-2 w-[220px] text-center text-4xl font-bold text-white">Select Your Character</h1>
-            <div className="grid grid-cols-1 gap-6 overflow-auto py-6 md:grid-cols-3">
+        <div className="flex h-full max-h-screen w-full flex-col items-center justify-center p-6">
+            <div className="relative flex w-full max-w-screen-lg items-center justify-center">
+                <IoChevronBack
+                    onClick={handleBackClick}
+                    className="absolute left-0 top-6 h-6 w-6 text-white lg:left-4"
+                />
+                <h1 className="mb-2 w-[220px] text-center text-4xl font-bold text-white">Select Your Character</h1>
+            </div>
+
+            <div className="grid max-w-xs grid-cols-1 gap-6 overflow-auto px-3 py-6 lg:max-w-screen-lg lg:grid-cols-3">
                 {characters.map((character) => (
                     <CharacterCard key={character.id} character={character} />
                 ))}

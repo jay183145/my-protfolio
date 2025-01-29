@@ -5,7 +5,7 @@ import cn from "@/lib/cn"
 import Button from "@/components/ui/button"
 import { Character } from "@/app/character-select/character-select-section"
 import Image from "next/image"
-import CharacterAttribute from "@/components/ui/modal/charater-attribute"
+import CharacterAttribute from "@/components/ui/modal/character-attribute"
 
 interface CardProps {
     className?: string
