@@ -1,10 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import React, { useState } from "react"
 import cn from "@/lib/cn"
 import Button from "@/components/ui/button"
 import { Character } from "@/lib/api/characters/type"
-import Image from "next/image"
 import CharacterAttribute from "@/components/ui/modal/character-attribute"
 
 interface CardProps {
@@ -13,6 +13,7 @@ interface CardProps {
 }
 
 export default function Card({ className, character }: CardProps) {
+    const [src, setSrc] = useState(character.image)
     const [isShowCharacterAttributeModal, setIsShowCharacterAttributeModal] = useState(false)
     const handleBtnClick = (name: string) => {
         setIsShowCharacterAttributeModal(true)
@@ -30,12 +31,15 @@ export default function Card({ className, character }: CardProps) {
                 <div className="mb-2 flex flex-col overflow-y-auto">
                     <div className="mb-2 text-center text-xl font-semibold text-black">{character.name}</div>
                     <div className="flex items-center justify-center py-2">
-                        <Image
-                            src={character.image}
+                        <img
+                            src={src}
                             alt={character.name}
                             width={100}
                             height={100}
                             className="rounded-full"
+                            onError={() => {
+                                setSrc("/character/rookie.webp")
+                            }}
                         />
                     </div>
                     <div className="text-center text-sm text-gray-700">{character.description}</div>
