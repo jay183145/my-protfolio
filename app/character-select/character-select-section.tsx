@@ -4,18 +4,17 @@ import React, { useEffect, useState } from "react"
 import CharacterCard from "@/app/character-select/character-card"
 import { IoChevronBack } from "react-icons/io5"
 import { useRouter } from "next/navigation"
-import { Character } from "@/lib/api/characters/type"
+import { DefaultCharacter } from "@/lib/api/characters/type"
 import { getCharacters } from "@/lib/api/characters"
 
 function CharacterSelect() {
     const router = useRouter()
-    const [characters, setCharacters] = useState<Character[]>([])
+    const [characters, setCharacters] = useState<DefaultCharacter[]>([])
 
     useEffect(() => {
         async function apiGetCharacters() {
             try {
                 const response = await getCharacters()
-                console.log(response)
                 setCharacters(response)
             } catch (error) {
                 console.error(error)

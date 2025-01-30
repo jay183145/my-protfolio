@@ -4,20 +4,19 @@
 import React, { useState } from "react"
 import cn from "@/lib/cn"
 import Button from "@/components/ui/button"
-import { Character } from "@/lib/api/characters/type"
+import { DefaultCharacter } from "@/lib/api/characters/type"
 import CharacterAttribute from "@/components/ui/modal/character-attribute"
 
 interface CardProps {
     className?: string
-    character: Character
+    character: DefaultCharacter
 }
 
 export default function Card({ className, character }: CardProps) {
     const [src, setSrc] = useState(character.image)
     const [isShowCharacterAttributeModal, setIsShowCharacterAttributeModal] = useState(false)
-    const handleBtnClick = (name: string) => {
+    const handleBtnClick = () => {
         setIsShowCharacterAttributeModal(true)
-        console.log(name)
     }
 
     return (
@@ -45,7 +44,7 @@ export default function Card({ className, character }: CardProps) {
                     <div className="text-center text-sm text-gray-700">{character.description}</div>
                 </div>
 
-                <Button variant="primary" className="w-full" onClick={() => handleBtnClick(character.characterClass)}>
+                <Button variant="primary" className="w-full" onClick={handleBtnClick}>
                     Choose {character.characterClass}
                 </Button>
             </div>
