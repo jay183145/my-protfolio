@@ -29,11 +29,11 @@ export default function Card({ className, character }: CardProps) {
                 )}
             >
                 <div className="mb-2 flex flex-col overflow-y-auto">
-                    <div className="mb-2 text-center text-xl font-semibold text-black">{character.name}</div>
+                    <div className="mb-2 text-center text-xl font-semibold text-black">{character.characterClass}</div>
                     <div className="flex items-center justify-center py-2">
                         <img
                             src={src}
-                            alt={character.name}
+                            alt={character.characterClass}
                             width={100}
                             height={100}
                             className="rounded-full"
@@ -45,8 +45,8 @@ export default function Card({ className, character }: CardProps) {
                     <div className="text-center text-sm text-gray-700">{character.description}</div>
                 </div>
 
-                <Button variant="primary" className="w-full" onClick={() => handleBtnClick(character.name)}>
-                    Choose {character.name}
+                <Button variant="primary" className="w-full" onClick={() => handleBtnClick(character.characterClass)}>
+                    Choose {character.characterClass}
                 </Button>
             </div>
             {isShowCharacterAttributeModal && (

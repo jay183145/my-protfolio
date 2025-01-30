@@ -9,6 +9,10 @@ export async function getPlayerById(id: string) {
     return apiFetch<T.Player>({ url: `/players/${id}`, method: "GET" })
 }
 
+export async function getPlayerByClass(characterClass: string) {
+    return apiFetch<T.Player>({ url: `/players/class/${characterClass}`, method: "GET" })
+}
+
 export async function createPlayer(player: T.Player) {
     return apiFetch<T.Player>({ url: "/players", method: "POST", data: player })
 }

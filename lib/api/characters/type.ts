@@ -1,6 +1,6 @@
 export type Character = {
     _id: string
-    name: string
+    characterClass: string
     description: string
     image: string
 }
