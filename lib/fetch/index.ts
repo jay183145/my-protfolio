@@ -1,3 +1,4 @@
+import { isServer } from "../constant/common"
 import { API_URL } from "../constant/env"
 import { ApiFetchOptions } from "./type"
 
@@ -24,6 +25,23 @@ export async function requestInterceptor(options: ApiFetchOptions): Promise<{ ur
     // Set default headers
     const headers = new Headers(init.headers)
     headers.set("Content-Type", "application/json")
+
+    // Set authorization header
+    if (isServer) {
+        const { cookies } = await import("next/headers")
+        const authToken = cookies().get("token=")
+        if (authToken) {
+            headers.set("Authorization", `Bearer ${authToken.value}`)
+        }
+    } else {
+        const authToken = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("token="))
+            ?.split("=")[1]
+        if (authToken) {
+            headers.set("Authorization", `Bearer ${authToken}`)
+        }
+    }
 
     return {
         url: finalUrl.pathname + finalUrl.search,
