@@ -5,7 +5,7 @@ import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import Button from "../../../components/ui/button"
 import ErrorModal from "../../../components/ui/modal/error-modal"
-import { UserRegisterResponse } from "@/lib/api/users/type"
+import { UserData } from "@/lib/api/users/type"
 import SuccessModal from "../../../components/ui/modal/success-modal"
 import { useRouter } from "next/navigation"
 
@@ -14,7 +14,7 @@ function RegisterForm() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [isShowErrorModal, setIsShowErrorModal] = useState(false)
-    const [userData, setUserData] = useState<UserRegisterResponse | undefined>(undefined)
+    const [userData, setUserData] = useState<UserData | undefined>(undefined)
     const [isShowSuccessModal, setIsShowSuccessModal] = useState(false)
 
     const {

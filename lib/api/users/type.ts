@@ -4,7 +4,7 @@ export type User = {
     password: string
 }
 
-export type UserRegisterResponse = {
+export type UserData = {
     _id: string
     username: string
     email: string
@@ -18,9 +18,5 @@ export type UserLogin = {
 export type UserLoginResponse = {
     message: string
     token: string
-    user: {
-        _id: string
-        username: string
-        email: string
-    }
+    user: UserData
 }

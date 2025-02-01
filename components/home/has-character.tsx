@@ -11,7 +11,7 @@ function HasCharacter() {
     const router = useRouter()
     const [error, setError] = useState<string | null>(null)
     const [isShowErrorModal, setIsShowErrorModal] = useState(false)
-    const [loginInfo, setLoginInfo] = useState<UserLoginResponse | undefined>(undefined)
+    const [loginInfo, setLoginInfo] = useState<UserLoginResponse | null>(null)
     const [isShowSuccessModal, setIsShowSuccessModal] = useState(false)
     const {
         register,
@@ -30,8 +30,10 @@ function HasCharacter() {
             setError(error.error)
             setIsShowErrorModal(true)
         }
-        setLoginInfo(data)
-        setIsShowSuccessModal(true)
+        if (data) {
+            setLoginInfo(data)
+            setIsShowSuccessModal(true)
+        }
     }
 
     return (
@@ -72,7 +74,7 @@ function HasCharacter() {
                     success={`Welcome back, ${loginInfo.user.username}!`}
                     isShow={isShowSuccessModal}
                     setIsShow={setIsShowSuccessModal}
-                    onClick={() => router.push("/")}
+                    onClick={() => router.push("/user")}
                 />
             )}
         </div>
