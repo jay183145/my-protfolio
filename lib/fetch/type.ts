@@ -5,3 +5,17 @@ export type ApiFetchOptions = RequestInit & {
     // isAuth?: boolean
     // isLogout?: boolean
 }
+
+export type ApiFetchResult<T> =
+    | {
+          error: ApiError
+          data?: never
+      }
+    | {
+          error?: never
+          data: T
+      }
+
+export type ApiError = {
+    error: string
+}

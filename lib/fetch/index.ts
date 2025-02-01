@@ -1,12 +1,16 @@
 import { isServer } from "../constant/common"
 import { API_URL } from "../constant/env"
-import { ApiFetchOptions } from "./type"
+import { ApiError, ApiFetchOptions, ApiFetchResult } from "./type"
 
-export default async function apiFetch<T>(options: ApiFetchOptions): Promise<T> {
+export default async function apiFetch<T>(options: ApiFetchOptions): Promise<ApiFetchResult<T>> {
     const request = await requestInterceptor(options)
-    const response = await fetch(API_URL + request.url, request.init)
 
-    return response.json()
+    // 發送請求
+    const result = await fetch(API_URL + request.url, request.init)
+        .then(responseInterceptor<T>)
+        .catch((e: ApiError) => errorInterceptor(e, options))
+
+    return result
 }
 
 export async function requestInterceptor(options: ApiFetchOptions): Promise<{ url: string; init: RequestInit }> {
@@ -51,4 +55,16 @@ export async function requestInterceptor(options: ApiFetchOptions): Promise<{ ur
             body: data ? JSON.stringify(data) : undefined,
         },
     }
+}
+
+async function responseInterceptor<T>(res: Response): Promise<{ data: T }> {
+    const result: T = await res.json()
+    if (!res.ok) throw result
+    return { data: result }
+}
+
+async function errorInterceptor(error: ApiError, options: ApiFetchOptions): Promise<{ error: ApiError }> {
+    if (isServer) console.log("fetch error", { error, options })
+
+    return { error }
 }

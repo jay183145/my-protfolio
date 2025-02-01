@@ -13,11 +13,11 @@ function CharacterSelect() {
 
     useEffect(() => {
         async function apiGetCharacters() {
-            try {
-                const response = await getCharacters()
-                setCharacters(response)
-            } catch (error) {
+            const { data, error } = await getCharacters()
+            if (error) {
                 console.error(error)
+            } else {
+                setCharacters(data)
             }
         }
         apiGetCharacters()
@@ -30,7 +30,10 @@ function CharacterSelect() {
     return (
         <div className="flex h-full max-h-screen w-full flex-col items-center justify-center px-10 py-5">
             <div className="relative flex w-full max-w-screen-lg items-center justify-center">
-                <IoChevronBack onClick={handleBackClick} className="absolute left-0 top-6 h-6 w-6 text-white" />
+                <IoChevronBack
+                    onClick={handleBackClick}
+                    className="absolute left-0 top-6 h-6 w-6 text-white hover:cursor-pointer"
+                />
                 <h1 className="w-[220px] text-center text-4xl font-bold text-white">Select Your Character</h1>
             </div>
 
