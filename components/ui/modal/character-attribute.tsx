@@ -1,6 +1,6 @@
 import React from "react"
 import BaseModal from "."
-import { DefaultCharacter } from "@/lib/api/characters/type"
+import { DefaultCharacter } from "@/lib/api/defaultCharacters/type"
 import Image from "next/image"
 import { RxCross2 } from "react-icons/rx"
 import { BiPlusMedical } from "react-icons/bi"

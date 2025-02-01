@@ -4,7 +4,7 @@
 import React, { useState } from "react"
 import cn from "@/lib/utils/cn"
 import Button from "@/components/ui/button"
-import { DefaultCharacter } from "@/lib/api/characters/type"
+import { DefaultCharacter } from "@/lib/api/defaultCharacters/type"
 import CharacterAttribute from "@/components/ui/modal/character-attribute"
 
 interface CardProps {
