@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState } from "react"
-import cn from "@/lib/cn"
+import cn from "@/lib/utils/cn"
 import Button from "@/components/ui/button"
 import { DefaultCharacter } from "@/lib/api/characters/type"
 import CharacterAttribute from "@/components/ui/modal/character-attribute"
