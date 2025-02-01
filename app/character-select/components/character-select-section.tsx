@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import CharacterCard from "@/app/character-select/character-card"
+import CharacterCard from "@/app/character-select/components/character-card"
 import { IoChevronBack } from "react-icons/io5"
 import { useRouter } from "next/navigation"
 import { DefaultCharacter } from "@/lib/api/characters/type"
@@ -28,7 +28,7 @@ function CharacterSelect() {
     }
 
     return (
-        <div className="flex h-full max-h-screen w-full flex-col items-center justify-center px-10 py-5">
+        <>
             <div className="relative flex w-full max-w-screen-lg items-center justify-center">
                 <IoChevronBack
                     onClick={handleBackClick}
@@ -36,13 +36,12 @@ function CharacterSelect() {
                 />
                 <h1 className="w-[220px] text-center text-4xl font-bold text-white">Select Your Character</h1>
             </div>
-
             <div className="mt-5 grid w-full max-w-xs grid-cols-1 gap-6 overflow-auto px-3 pb-5 md:max-w-screen-lg md:grid-cols-3">
                 {characters.map((character) => (
                     <CharacterCard key={character._id} character={character} />
                 ))}
             </div>
-        </div>
+        </>
     )
 }
 

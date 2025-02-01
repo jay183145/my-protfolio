@@ -3,10 +3,10 @@
 import { registerUser } from "@/lib/api/users"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import Button from "../ui/button"
-import ErrorModal from "../ui/modal/error-modal"
+import Button from "../../../components/ui/button"
+import ErrorModal from "../../../components/ui/modal/error-modal"
 import { UserRegisterResponse } from "@/lib/api/users/type"
-import SuccessModal from "../ui/modal/success-modal"
+import SuccessModal from "../../../components/ui/modal/success-modal"
 import { useRouter } from "next/navigation"
 
 function RegisterForm() {
