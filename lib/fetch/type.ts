@@ -16,6 +16,7 @@ export type ApiFetchResult<T> =
           data: T
       }
 
-export type ApiError = {
+export interface ApiError extends Error {
+    code: number
     error: string
 }
