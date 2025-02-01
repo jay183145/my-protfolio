@@ -43,7 +43,7 @@ function RegisterForm() {
 
     return (
         <div className="flex w-[300px] flex-col gap-4">
-            <h1 className="text-2xl font-bold">Create your account</h1>
+            <h1 className="text-2xl font-bold">Create an account!</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <div>
                     <input
@@ -87,6 +87,22 @@ function RegisterForm() {
                     </Button>
                 </div>
             </form>
+            {/* 分隔線 */}
+            <div className="flex items-center justify-center py-5">
+                <div className="mr-3 w-full border-b border-neutral-50"></div>
+                <div className="">or</div>
+                <div className="ml-3 w-full border-b border-neutral-50"></div>
+            </div>
+            {/* 登入 */}
+            <div className="flex items-center justify-end">
+                <div className="pr-2">Already have an account?</div>
+                <button
+                    onClick={() => router.push("/")}
+                    className="font-bold underline hover:cursor-pointer hover:text-neutral-500"
+                >
+                    Login now!
+                </button>
+            </div>
             {error && <ErrorModal error={error} isShow={isShowErrorModal} setIsShow={setIsShowErrorModal} />}
             {userData && (
                 <SuccessModal
@@ -94,7 +110,7 @@ function RegisterForm() {
                     isShow={isShowSuccessModal}
                     setIsShow={setIsShowSuccessModal}
                     onClick={() => {
-                        router.push("/login")
+                        router.push("/")
                     }}
                 />
             )}
