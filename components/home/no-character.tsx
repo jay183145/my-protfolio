@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import Button from "../ui/button"
 import { useRouter } from "next/navigation"
 
 function NoCharacter() {
@@ -11,11 +10,16 @@ function NoCharacter() {
     }
     return (
         <div className="flex flex-col gap-4">
-            <div className="">Create one now!</div>
-            <div className="mx-2">
-                <Button variant="primary" size="xs" className="w-full" onClick={handleCreateCharacter}>
-                    Create
-                </Button>
+            <div className="flex items-center justify-center">
+                <div className="mx-2">Create one now!</div>
+                <div className="flex items-center justify-end">
+                    <button
+                        onClick={handleCreateCharacter}
+                        className="font-bold underline hover:cursor-pointer hover:text-neutral-500"
+                    >
+                        Create
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -1,8 +1,18 @@
 import { loginUser } from "@/lib/api/users"
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
+import ErrorModal from "../ui/modal/error-modal"
+import { UserLoginResponse } from "@/lib/api/users/type"
+import SuccessModal from "../ui/modal/success-modal"
+import Button from "../ui/button"
 
 function HasCharacter() {
+    const router = useRouter()
+    const [error, setError] = useState<string | null>(null)
+    const [isShowErrorModal, setIsShowErrorModal] = useState(false)
+    const [loginInfo, setLoginInfo] = useState<UserLoginResponse | undefined>(undefined)
+    const [isShowSuccessModal, setIsShowSuccessModal] = useState(false)
     const {
         register,
         handleSubmit,
@@ -14,13 +24,14 @@ function HasCharacter() {
         },
     })
 
-    const onSubmit = async (data: { username: string; password: string }) => {
-        try {
-            const response = await loginUser(data)
-            console.log(response)
-        } catch (e) {
-            console.log(e)
+    const onSubmit = async (LoginData: { username: string; password: string }) => {
+        const { data, error } = await loginUser(LoginData)
+        if (error) {
+            setError(error.error)
+            setIsShowErrorModal(true)
         }
+        setLoginInfo(data)
+        setIsShowSuccessModal(true)
     }
 
     return (
@@ -51,12 +62,19 @@ function HasCharacter() {
                     />
                     {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>}
                 </div>
-                <div className="flex items-center justify-end">
-                    <button className="font-bold underline hover:cursor-pointer hover:text-neutral-500">
-                        Let&apos;s play now!
-                    </button>
-                </div>
+                <Button variant="primary" size="sm" className="w-full" onClick={() => handleSubmit(onSubmit)}>
+                    Let&apos;s play now!
+                </Button>
             </form>
+            {error && <ErrorModal error={error} isShow={isShowErrorModal} setIsShow={setIsShowErrorModal} />}
+            {loginInfo && (
+                <SuccessModal
+                    success={`Welcome back, ${loginInfo.user.username}!`}
+                    isShow={isShowSuccessModal}
+                    setIsShow={setIsShowSuccessModal}
+                    onClick={() => router.push("/")}
+                />
+            )}
         </div>
     )
 }

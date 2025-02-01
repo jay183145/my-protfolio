@@ -16,7 +16,7 @@ function SuccessModal({ success, isShow, setIsShow, onClick }: SuccessModalProps
         isShow && (
             <BaseModal onClick={() => setIsShow(false)}>
                 <div className="absolute left-1/2 top-1/2 flex w-full max-w-xs -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-2xl bg-neutral-200">
-                    <div className="flex w-full items-center justify-between rounded-t-2xl bg-green-400 px-4 py-3">
+                    <div className="flex w-full items-center justify-between rounded-t-2xl bg-green-500 px-4 py-3">
                         <BiPlusMedical className="invisible text-xl" />
                         <span className="text-center text-xl font-bold">Success!</span>
                         <RxCross2 className="cursor-pointer text-xl" onClick={() => setIsShow(false)} />
