@@ -1,4 +1,5 @@
 export type Character = {
+    _id: string
     owner: string
     name: string
     level: number
@@ -12,4 +13,9 @@ export type Character = {
     characterClass: string
     description: string
     image: string
+}
+
+export type CreateCharacter = {
+    name: string
+    characterClass: string
 }
