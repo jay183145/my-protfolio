@@ -1,61 +1,20 @@
-"use client"
-
-import React, { useState } from "react"
-import BaseModal from "."
-import { DefaultCharacter } from "@/lib/api/defaultCharacters/type"
+import { Character } from "@/lib/api/characters/type"
+import React from "react"
 import Image from "next/image"
-import { RxCross2 } from "react-icons/rx"
-import { BiPlusMedical } from "react-icons/bi"
 import { FaHeart } from "react-icons/fa"
 import { GiSpiralBottle } from "react-icons/gi"
 import { PiSwordDuotone } from "react-icons/pi"
 import { TbShieldCheckeredFilled } from "react-icons/tb"
 import { PiCoinsFill } from "react-icons/pi"
-import Button from "@/components/ui/button"
-import { createCharacter } from "@/lib/api/characters"
-import { useRouter } from "next/navigation"
-import ScreenLoading from "@/app/lodaing"
-import ErrorModal from "./error-modal"
 
-type CharacterAttributeProps = {
-    setIsShowCharacterAttributeModal: React.Dispatch<React.SetStateAction<boolean>>
-    character: DefaultCharacter
+type CharacterSlotProps = {
+    character: Character
 }
-
-function CharacterAttribute({ setIsShowCharacterAttributeModal, character }: CharacterAttributeProps) {
-    const router = useRouter()
-    const [error, setError] = useState<string | null>(null)
-    const [isShowErrorModal, setIsShowErrorModal] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-
-    const handleCreateCharacter = async () => {
-        setIsLoading(true)
-        const { data, error } = await createCharacter({
-            name: character.name,
-            characterClass: character.characterClass,
-        })
-        if (error) {
-            setError(error.message)
-            setIsShowErrorModal(true)
-            return
-        }
-        if (data) {
-            setIsShowCharacterAttributeModal(false)
-            router.push("/user")
-        }
-        setIsLoading(false)
-    }
+function CharacterSlot({ character }: CharacterSlotProps) {
     return (
-        <BaseModal onClick={() => setIsShowCharacterAttributeModal(false)}>
-            <div className="absolute left-1/2 top-1/2 flex w-full max-w-xs -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-2xl bg-neutral-200">
-                <div className="flex w-full items-center justify-between rounded-t-2xl bg-neutral-500 px-4 py-3">
-                    <BiPlusMedical className="invisible text-xl" />
-                    <span className="text-center text-xl font-bold">{character.characterClass}</span>
-                    <RxCross2
-                        className="cursor-pointer text-xl"
-                        onClick={() => setIsShowCharacterAttributeModal(false)}
-                    />
-                </div>
+        <div className="flex flex-col items-center gap-4">
+            <div className="text-md font-semibold text-white">{character.name}</div>
+            <div className="flex flex-col items-center rounded-lg bg-neutral-600 p-2">
                 <div className="py-3">
                     <Image
                         className="h-32 w-32"
@@ -65,7 +24,6 @@ function CharacterAttribute({ setIsShowCharacterAttributeModal, character }: Cha
                         height={250}
                     />
                 </div>
-                <div className="text-md font-semibold text-neutral-800">Character Ability Points</div>
                 <div className="p-3">
                     <div className="flex w-[180px] flex-col items-start justify-between rounded-lg border border-neutral-600 bg-neutral-900 py-3 pl-5 pr-8">
                         <div className="flex items-center justify-between">
@@ -95,16 +53,9 @@ function CharacterAttribute({ setIsShowCharacterAttributeModal, character }: Cha
                         </div>
                     </div>
                 </div>
-                <div className="mb-8 mt-3 w-[200px]">
-                    <Button variant="secondary" className="w-full" onClick={handleCreateCharacter}>
-                        <span>Choose</span>
-                    </Button>
-                </div>
             </div>
-            {isLoading && <ScreenLoading />}
-            {error && <ErrorModal error={error} isShow={isShowErrorModal} setIsShow={setIsShowErrorModal} />}
-        </BaseModal>
+        </div>
     )
 }
 
-export default CharacterAttribute
+export default CharacterSlot
