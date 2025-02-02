@@ -36,6 +36,7 @@ export async function requestInterceptor(options: ApiFetchOptions): Promise<{ ur
             ...init,
             headers,
             body: data ? JSON.stringify(data) : undefined,
+            credentials: "include",
         },
     }
 }
