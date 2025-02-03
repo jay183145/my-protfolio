@@ -19,7 +19,7 @@ function ErrorModal({ error, isShow, setIsShow }: ErrorModalProps) {
                         <span className="text-center text-xl font-bold">Error Occured!</span>
                         <RxCross2 className="cursor-pointer text-xl" onClick={() => setIsShow(false)} />
                     </div>
-                    <div className="flex flex-col items-center justify-center px-5 pb-8">
+                    <div className="flex w-full flex-col items-center justify-center px-5 pb-8">
                         <div className="pb-3 pt-5">
                             <MdErrorOutline className="text-4xl text-red-500" />
                         </div>

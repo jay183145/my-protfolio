@@ -1,7 +1,7 @@
 import React from "react"
 import { RxCross2 } from "react-icons/rx"
 import BaseModal from "."
-import { MdErrorOutline } from "react-icons/md"
+import { GiPointySword } from "react-icons/gi"
 import { BiPlusMedical } from "react-icons/bi"
 import Button from "../button"
 
@@ -12,6 +12,10 @@ type SuccessModalProps = {
     onClick: () => void
 }
 function SuccessModal({ success, isShow, setIsShow, onClick }: SuccessModalProps) {
+    const handleClick = () => {
+        onClick()
+    }
+
     return (
         isShow && (
             <BaseModal onClick={() => setIsShow(false)}>
@@ -21,12 +25,12 @@ function SuccessModal({ success, isShow, setIsShow, onClick }: SuccessModalProps
                         <span className="text-center text-xl font-bold">Success!</span>
                         <RxCross2 className="cursor-pointer text-xl" onClick={() => setIsShow(false)} />
                     </div>
-                    <div className="flex flex-col items-center justify-center px-5 pb-8">
+                    <div className="flex w-full flex-col items-center justify-center px-5 pb-8">
                         <div className="pb-3 pt-5">
-                            <MdErrorOutline className="text-4xl text-green-500" />
+                            <GiPointySword className="text-4xl text-neutral-500" />
                         </div>
                         <div className="text-md pb-5 text-center font-semibold text-black">{success}</div>
-                        <Button variant="primary" size="xs" className="w-full" onClick={onClick}>
+                        <Button variant="primary" size="xs" className="w-full" onClick={handleClick}>
                             Next
                         </Button>
                     </div>
