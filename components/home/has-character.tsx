@@ -6,6 +6,7 @@ import ErrorModal from "../ui/modal/error-modal"
 import { UserLoginResponse } from "@/lib/api/users/type"
 import SuccessModal from "../ui/modal/success-modal"
 import Button from "../ui/button"
+import ScreenLoading from "@/app/lodaing"
 
 function HasCharacter() {
     const router = useRouter()
@@ -13,6 +14,8 @@ function HasCharacter() {
     const [isShowErrorModal, setIsShowErrorModal] = useState(false)
     const [loginInfo, setLoginInfo] = useState<UserLoginResponse | null>(null)
     const [isShowSuccessModal, setIsShowSuccessModal] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
     const {
         register,
         handleSubmit,
@@ -25,6 +28,7 @@ function HasCharacter() {
     })
 
     const onSubmit = async (LoginData: { username: string; password: string }) => {
+        setIsLoading(true)
         const { data, error } = await loginUser(LoginData)
         if (error) {
             setError(error.error)
@@ -34,9 +38,17 @@ function HasCharacter() {
             setLoginInfo(data)
             setIsShowSuccessModal(true)
         }
+        setIsLoading(false)
     }
 
-    return (
+    const handleNavigate = () => {
+        setIsLoading(true)
+        router.push("/user")
+    }
+
+    return isLoading ? (
+        <ScreenLoading />
+    ) : (
         <div className="flex flex-col gap-4">
             <h1 className="text-2xl font-bold">Having a character?</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -74,7 +86,7 @@ function HasCharacter() {
                     success={`Welcome back, ${loginInfo.user.username}!`}
                     isShow={isShowSuccessModal}
                     setIsShow={setIsShowSuccessModal}
-                    onClick={() => router.push("/user")}
+                    onClick={handleNavigate}
                 />
             )}
         </div>

@@ -2,17 +2,18 @@
 
 import { getUserCharacter } from "@/lib/api/characters"
 import { Character } from "@/lib/api/characters/type"
-import React, { Suspense, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import CharacterSlot from "./components/character-slot"
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5"
 import Button from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
+
 import ScreenLoading from "../lodaing"
 import CommingSoon from "@/components/ui/modal/comming-soon"
 import EmptySlot from "./components/empty-slot"
 import { useRouter } from "next/navigation"
+import Header from "./components/header"
 
 function UserPage() {
     const router = useRouter()
@@ -48,6 +49,7 @@ function UserPage() {
         setIsShowCommingSoon(true)
     }
     const handleCreate = () => {
+        setLoading(true)
         router.push("/character-select")
     }
 
@@ -55,17 +57,12 @@ function UserPage() {
         <div className="flex h-full max-h-screen min-h-screen w-full flex-col items-center justify-center">
             {loading && <ScreenLoading />}
             {!loading && (
-                <div className="flex flex-col gap-4">
-                    <div className="relative flex flex-col items-center justify-center gap-4">
-                        <Link href="/" className="absolute left-0 top-2">
-                            <IoChevronBackOutline />
-                        </Link>
-                        <h1 className="text-2xl font-bold">Character List</h1>
-                    </div>
+                <div className="flex flex-col items-center justify-center gap-4">
+                    <Header />
                     {error && <p className="text-red-500">{error}</p>}
                     {characters && characters.length === 0 && <EmptySlot />}
                     {characters && characters.length > 0 && (
-                        <div className="flex flex-col items-center gap-4">
+                        <div className="flex w-full flex-col items-center justify-center gap-4">
                             <div className="flex items-center gap-5">
                                 {/* 上個角色箭頭 */}
                                 <button
