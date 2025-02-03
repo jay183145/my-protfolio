@@ -7,6 +7,7 @@ import { UserLoginResponse } from "@/lib/api/users/type"
 import SuccessModal from "../ui/modal/success-modal"
 import Button from "../ui/button"
 import ScreenLoading from "@/app/lodaing"
+import { setJwtToken } from "@/lib/auth"
 
 function HasCharacter() {
     const router = useRouter()
@@ -37,6 +38,7 @@ function HasCharacter() {
         if (data) {
             setLoginInfo(data)
             setIsShowSuccessModal(true)
+            setJwtToken(data.token)
         }
         setIsLoading(false)
     }
