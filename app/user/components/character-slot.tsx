@@ -14,7 +14,7 @@ function CharacterSlot({ character }: CharacterSlotProps) {
     return (
         <div className="flex flex-col items-center gap-4">
             <div className="text-md font-semibold text-white">{character.name}</div>
-            <div className="flex flex-col items-center rounded-lg bg-neutral-600 p-2">
+            <div className="flex h-[350px] w-[220px] flex-col items-center rounded-lg bg-neutral-600 p-2">
                 <div className="py-3">
                     <Image
                         className="h-32 w-32"
